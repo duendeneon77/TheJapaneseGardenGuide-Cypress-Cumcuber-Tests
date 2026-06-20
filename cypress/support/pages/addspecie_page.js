@@ -7,7 +7,7 @@ export default {
 
         cy.get("#inputSpecieName").type("Pinheiro Branco")
         cy.get("#inputCientificName").type("Pinus parviflora")
-        cy.get("#inputMainImage").type("/speciesImages/whitepinus/whitepinus.png")
+        cy.get("#inputMainImage").type("/testImages/whitepinus.png")
 
         cy.get("#specieText").type(
             "Pinus parviflora é uma árvore de porte médio, isso é um parágrafo."
@@ -37,13 +37,13 @@ export default {
         cy.get(".galleryInputContainer")
             .find("input.addSpecieInputs")
             .eq(0)
-            .type("/speciesImages/whitepinus/whitepinus.png")
+            .type("/testImages/whitepinus.png")
 
         cy.get("#more").click()
         cy.get(".galleryInputContainer")
             .find("input.addSpecieInputs")
             .eq(1)
-            .type("/speciesImages/whitepinus/whitepinus.png")
+            .type("/testImages/whitepinus.png")
 
         cy.get("#more").click()
         cy.get(".galleryInputContainer")
