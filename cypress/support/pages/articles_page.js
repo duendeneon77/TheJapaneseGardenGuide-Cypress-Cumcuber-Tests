@@ -1,4 +1,3 @@
-articles_page.js
 
 ///<reference types="cypress"/>
 
@@ -6,5 +5,15 @@ articles_page.js
 export default{
     goToAdminMenu(){
         cy.get("#adminLink").click()
-    }
+    },
+    goToArticlePage(article){
+        cy.contains('.card', article).within(() => {
+        cy.contains('a', 'Ler mais').click()
+        })
+    },
+    articleShallNotExist(article){
+        cy.contains('.card h2', article).should('not.exist')
+    },
+    
+    
 }
