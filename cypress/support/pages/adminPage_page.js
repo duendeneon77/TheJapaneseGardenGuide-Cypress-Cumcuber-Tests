@@ -16,6 +16,12 @@ export default{
     },
     goToPublishArticle(){
         cy.contains("button", "Publicar Artigo").click()
+    },
+    goToAddVideo(){
+        cy.contains('button', 'Postar Vídeo').click()
+    },
+    goToEditOrDeleteVideo(){
+        cy.contains('button', 'Editar/Deletar Vídeo').click()
     }
 
 }
