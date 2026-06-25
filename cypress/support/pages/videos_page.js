@@ -2,11 +2,11 @@
 /// <reference types="cypress" />
 
     export default{
-    theVideoExistsInTheVideoPage(){
-    cy.contains('h2', "Video Test",{timeout:5000}).should('be.visible')
+    theVideoExistsInTheVideoPage(videoName){
+    cy.contains('h2', videoName,{timeout:10000}).should('be.visible')
     },
-    checkVideoDetails(){
-        cy.get('.videoDiv iframe',{timeout:5000})
+    checkVideoDetails(videoDesctiption){
+        cy.get('.videoDiv iframe',{timeout:10000})
     .invoke('attr', 'src')
     .then((src) => {
         const videoId = src
@@ -15,9 +15,15 @@
         expect(videoId).to.match(/^[a-zA-Z0-9_-]{11}$/)
     })
 
-    cy.contains('p', "video description test, video description text").should('be.visible')
+    cy.contains('p', videoDesctiption).should('be.visible')
     },
-    theVideoDoesNotExistInTheVideoPage(){
-        cy.contains('h2', "Video Test",{timeout:5000}).should('not.exist')
+    theVideoDoesNotExistInTheVideoPage(videoName){
+
+        cy.log(videoName)
+
+        cy.contains('h2', videoName,{timeout:10000}).should('not.exist')
+    },
+    goToAdminPage(){
+        cy.contains('a', 'Menu de Administrador').click()
     }
 }

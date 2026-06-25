@@ -11,7 +11,7 @@ Feature: Manage Species
         Then I see the article update message "Artigo atualizado com sucesso!"
         And I can view the updated article details
 
-     Scenario: Editing an article with missing required field
+     Scenario Outline: Editing an article with missing required field
 
          When I edit the aricle without required fields "<field>"
          Then I see the species update message "É necessário preencher o título e o texto do artigo para salvar"

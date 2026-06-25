@@ -30,11 +30,11 @@ Then("I see the video creation message {string}",(message)=>{
 }),
 Then('I see the video in the list',()=>{
     addvideo_page.goToVideosPage()
-    videos_page.theVideoExistsInTheVideoPage()
+    videos_page.theVideoExistsInTheVideoPage('Video Test')
 }),
 Then("I can check the video details",()=>{
-    videos_page.theVideoExistsInTheVideoPage()
-    videos_page.checkVideoDetails()
+    videos_page.theVideoExistsInTheVideoPage("Video Test")
+    videos_page.checkVideoDetails("video description test, video description text")
 }),
 When("I try to add a new video with missing field {string}",(field)=>{
     addvideo_page.clearVideoFieldInput(field)
@@ -42,7 +42,7 @@ When("I try to add a new video with missing field {string}",(field)=>{
 }),
 Then("I dont see the video in the list",()=>{
     addvideo_page.goToVideosPage()
-    videos_page.theVideoDoesNotExistInTheVideoPage()
+    videos_page.theVideoDoesNotExistInTheVideoPage('Video Test')
 }),
 When("I try to add a new video with a invalid video link", ()=>{
     addvideo_page.fillVideoFields()
