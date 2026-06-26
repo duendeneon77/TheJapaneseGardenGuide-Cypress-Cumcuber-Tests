@@ -22,6 +22,20 @@ export default{
     },
     goToEditOrDeleteVideo(){
         cy.contains('button', 'Editar/Deletar Vídeo').click()
-    }
+    },
+    goToEditHistoryPage(){
+        cy.contains('button', 'Editar Página "História"').click()
+    },
+    goToHistoryPage(){
+    cy.contains('button', 'Índice').click()
+    cy.contains('button', "História",{timeout:5000}).click()
+    },
+    goToEditProjectPage(){
+        cy.contains('button', 'Editar Página "Projeto"').click()
+    },
+    goToProjectPage(){
+    cy.contains('button', 'Sobre').click()
+    cy.contains('button', "Projeto",{timeout:5000}).click()
+    },
 
 }
