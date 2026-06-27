@@ -60,6 +60,14 @@ export default{
         cy.contains('button', 'Índice').click()
         cy.contains('button', 'Mais',{timeout:5000}).click()
         cy.contains('h3', 'A importância das Pedras').click()
+    },
+    goToEditBridgesSession(){
+        cy.contains('button', 'Editar sessão "Pontes"').click()
+    },
+    goToBridgesSessionPage(){
+        cy.contains('button', 'Índice').click()
+        cy.contains('button', 'Mais',{timeout:5000}).click()
+        cy.contains('h3', 'Pontes no jardim japonês').click()
     }
 
 }
