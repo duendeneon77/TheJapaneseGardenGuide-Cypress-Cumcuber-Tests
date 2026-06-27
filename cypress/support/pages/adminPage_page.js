@@ -37,5 +37,13 @@ export default{
     cy.contains('button', 'Sobre').click()
     cy.contains('button', "Projeto",{timeout:5000}).click()
     },
+    goToEditWaterSession(){
+        cy.contains('button', 'Editar sessão "Água"').click()
+    },
+    goToWaterSessionPage(){
+        cy.contains('button', 'Índice').click()
+        cy.contains('button', 'Mais',{timeout:5000}).click()
+        cy.contains('h3', 'A presença da Água no Jardim japonês').click()
+    }
 
 }
