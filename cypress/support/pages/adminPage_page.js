@@ -44,6 +44,22 @@ export default{
         cy.contains('button', 'Índice').click()
         cy.contains('button', 'Mais',{timeout:5000}).click()
         cy.contains('h3', 'A presença da Água no Jardim japonês').click()
+    },
+    goToEditToroSession(){
+        cy.contains('button', 'Editar sessão "Torô"').click()
+    },
+    goToToroSessionPage(){
+        cy.contains('button', 'Índice').click()
+        cy.contains('button', 'Mais',{timeout:5000}).click()
+        cy.contains('h3', 'Torô, a luminária de pedra').click()
+    },
+    goToEditRocksSession(){
+        cy.contains('button', 'Editar sessão "Pedras"').click()
+    },
+    goToRocksSessionPage(){
+        cy.contains('button', 'Índice').click()
+        cy.contains('button', 'Mais',{timeout:5000}).click()
+        cy.contains('h3', 'A importância das Pedras').click()
     }
 
 }
