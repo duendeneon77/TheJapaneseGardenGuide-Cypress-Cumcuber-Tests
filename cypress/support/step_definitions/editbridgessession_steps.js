@@ -32,7 +32,7 @@ Then ("I click to cancel the bridges session edition",()=>{
     
     editbridgessession_page.cancelEdition()
 })
-Then('I dont see the the edited bridges session',()=>{
+Then('I dont see the edited bridges session',()=>{
     adminPage_page.goToBridgesSessionPage()
     bridgessession_page.theBridgesSessionWasNotEdited()
 

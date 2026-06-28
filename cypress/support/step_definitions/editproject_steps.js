@@ -29,7 +29,7 @@ Then('I see the the edited project page',()=>{
 Then ("I click to cancel the project page edition",()=>{
     editproject_page.cancelEdition()
 })
-Then('I dont see the the edited project page',()=>{
+Then('I dont see the edited project page',()=>{
     adminPage_page.goToProjectPage()
     project_page.theProjectPageWasNotEdited()
 

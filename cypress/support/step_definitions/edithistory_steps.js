@@ -29,7 +29,7 @@ Then('I see the the edited history page',()=>{
 Then ("I click to cancel the history page edition",()=>{
     edithistory_page.cancelEdition()
 })
-Then('I dont see the the edited history page',()=>{
+Then('I dont see the edited history page',()=>{
     adminPage_page.goToHistoryPage()
     history_page.theHistoryPageWasNotEdited()
 

@@ -2,7 +2,7 @@
 
 export default {
 
-    fillSpecieTextFields() {
+    fillSpeciesTextFields() {
         cy.get("#specieFormTitle").should("be.visible")
 
         cy.get("#inputSpecieName").type("Pinheiro Branco")
@@ -14,7 +14,7 @@ export default {
         )
     },
 
-    fillSpecieRadioFields(skip = null) {
+    fillSpeciesRadioFields(skip = null) {
         if (skip !== "tamanho") {
             cy.get('input[name="tamanho"][value="grande"]').check()
         }
@@ -28,11 +28,11 @@ export default {
         }
     },
 
-    fillSpecieCheckboxFields() {
+    fillSpeciesCheckboxFields() {
         cy.get('input[type="checkbox"][value="cores frias"]').check()
     },
 
-    fillSpecieGallery() {
+    fillSpeciesGallery() {
         cy.get("#more").click()
         cy.get(".galleryInputContainer")
             .find("input.addSpecieInputs")
@@ -55,10 +55,10 @@ export default {
     },
 
     fillSpeciesCorrectly() {
-        this.fillSpecieTextFields()
-        this.fillSpecieRadioFields()
-        this.fillSpecieCheckboxFields()
-        this.fillSpecieGallery()
+        this.fillSpeciesTextFields()
+        this.fillSpeciesRadioFields()
+        this.fillSpeciesCheckboxFields()
+        this.fillSpeciesGallery()
     },
 
     goToSpeciesPage() {
@@ -67,30 +67,30 @@ export default {
         cy.contains("button", "Espécies").click()
     },
 
-    cleanUpTestSpecie(specieName) {
-    cy.get("#adminLink").click()
-    cy.contains("button", "Editar/Excluir Espécie").click()
+    cleanUpTestSpecies(speciesName) {
+        cy.get("#adminLink").click()
+        cy.contains("button", "Editar/Excluir Espécie").click()
 
-    const deleteIfExists = () => {
-        cy.get("#searchVideo").clear().type(specieName)
+        const deleteIfExists = () => {
+            cy.get("#searchVideo").clear().type(speciesName)
 
-        cy.get("body").then(($body) => {
-            if ($body.find(".searchItem").length > 0) {
-                cy.contains(".searchItem", specieName).click()
-                cy.contains("button", "Deletar").click()
-                cy.get("#modalDeleteSpecie")
-                  .contains("button", "Sim")
-                  .click()
+            cy.get("body").then(($body) => {
+                if ($body.find(".searchItem").length > 0) {
+                    cy.contains(".searchItem", speciesName).click()
+                    cy.contains("button", "Deletar").click()
+                    cy.get("#modalDeleteSpecie")
+                        .contains("button", "Sim")
+                        .click()
 
-                cy.get("#articleModalBox > button").click()
+                    cy.get("#articleModalBox > button").click()
 
-                deleteIfExists()
-            }
-        })
-    }
+                    deleteIfExists()
+                }
+            })
+        }
 
-    deleteIfExists()
-},
+        deleteIfExists()
+    },
 
     clickPostButton() {
         cy.get("#post").click()
@@ -101,15 +101,18 @@ export default {
     },
 
     seeTheMessage(message) {
-        cy.get("#articleModalBox > p").should("be.visible").and("have.text", message)
+        cy.get("#articleModalBox > p")
+            .should("be.visible")
+            .and("have.text", message)
     },
 
     clickToCloseModal() {
-
-        cy.get("#articleModalBox").find("button", "Entrar").click()
+        cy.get("#articleModalBox")
+            .find("button", "Entrar")
+            .click()
     },
 
-    clearInputField(field) {
+    clearField(field) {
         const fields = {
             "name": "#inputSpecieName",
             "scientific name": "#inputCientificName",
@@ -120,3 +123,4 @@ export default {
         cy.get(fields[field]).clear()
     }
 }
+

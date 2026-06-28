@@ -29,7 +29,7 @@ Then('I see the the edited toro session',()=>{
 Then ("I click to cancel the toro session edition",()=>{
     edittorosession_page.cancelEdition()
 })
-Then('I dont see the the edited toro session',()=>{
+Then('I dont see the edited toro session',()=>{
     adminPage_page.goToToroSessionPage()
     torosession_page.theToroSessionWasNotEdited()
 

@@ -1,91 +1,94 @@
 /// <reference types="cypress" />
 
-export default{
-    fillVideoFields(){
-        
-    cy.get("#inputVideoName").type("Video Test")
-    cy.get("#inputVideoCode").type("https://www.youtube.com/embed/nxoLurgMSZA?si=ejsoYKtkzVoP27DZ")
-    cy.get("#videoText").type("video description test, video description text")
+export default {
 
+    fillVideoFields() {
+        cy.get("#inputVideoName").type("Video Test")
+        cy.get("#inputVideoCode").type("https://www.youtube.com/embed/nxoLurgMSZA?si=ejsoYKtkzVoP27DZ")
+        cy.get("#videoText").type("video description test, video description text")
     },
-    clickToPostVideo(){
-        
-    cy.contains("button", "Postar").click()
-    },
-    dealingWithAddVideoMessage(message){
-    cy.get('#articleModalBox',{timeout:5000}).should('be.visible')
-    cy.contains("p", message).should('be.visible')
-    cy.contains("button", "Fechar").click()
 
+    clickPostVideo() {
+        cy.contains("button", "Postar").click()
     },
-    goToVideosPage(){
-    cy.contains('button', 'Mídia').click()
-    cy.contains('button', 'Videos',{timeout:5000}).click()
+
+    handleVideoCreationMessage(message) {
+        cy.get('#articleModalBox', { timeout: 5000 }).should('be.visible')
+        cy.contains("p", message).should('be.visible')
+        cy.contains("button", "Fechar").click()
     },
-    clearVideoFieldInput(field){
+
+    goToVideosPage() {
+        cy.contains('button', 'Mídia').click()
+        cy.contains('button', 'Videos', { timeout: 5000 }).click()
+    },
+
+    clearVideoField(field) {
         const fields = {
             "video name": "#inputVideoName",
             "video code": "#inputVideoCode",
         }
+
         cy.get(fields[field]).clear()
     },
-    fillingInputWithUnvalidCode(){
+
+    fillVideoWithInvalidCode() {
         cy.get("#inputVideoCode").clear()
         cy.get("#inputVideoCode").type("https://www.youtube.com/InvalidVideoEmbedCode")
-
     },
-    clickToCancel(){
+
+    clickCancelVideoCreation() {
         cy.contains('button', 'Cancelar').click()
-        cy.contains('h2', 'O que deseja fazer?',{timeout:5000}).should('be.visible')
+        cy.contains('h2', 'O que deseja fazer?', { timeout: 5000 }).should('be.visible')
     },
-    cleaningAddVideoTest(){
 
-    const deleteTestVideoIfExists = () => {
+    cleanUpTestVideo() {
 
-        cy.get("#searchVideo",{timeout:5000})
-            .clear()
-            .type("Video Test")
+        const deleteIfExists = () => {
 
-        cy.get("body").then(($body) => {
+            cy.get("#searchVideo", { timeout: 5000 })
+                .clear()
+                .type("Video Test")
 
-            const hasVideo =
-                $body.find(".searchItem").filter((i, el) =>
-                    el.innerText.includes("Video Test")
-                ).length > 0
+            cy.get("body").then(($body) => {
 
-            if (hasVideo) {
+                const hasVideo =
+                    $body.find(".searchItem").filter((i, el) =>
+                        el.innerText.includes("Video Test")
+                    ).length > 0
 
-                cy.contains(".searchItem", "Video Test")
-                    .first()
-                    .click()
+                if (hasVideo) {
 
-                cy.contains("button", "Deletar")
-                    .click()
+                    cy.contains(".searchItem", "Video Test")
+                        .first()
+                        .click()
 
-                cy.get(".modalDeleteVideoBox", { timeout: 5000 })
-                    .should("be.visible")
+                    cy.contains("button", "Deletar")
+                        .click()
 
-                cy.contains("button", "Sim")
-                    .click()
+                    cy.get(".modalDeleteVideoBox", { timeout: 5000 })
+                        .should("be.visible")
 
-                cy.get("#articleModalBox", { timeout: 5000 })
-                    .should("be.visible")
+                    cy.contains("button", "Sim")
+                        .click()
 
-                cy.contains("button", "Fechar")
-                    .click()
+                    cy.get("#articleModalBox", { timeout: 5000 })
+                        .should("be.visible")
 
-                cy.wait(300)
+                    cy.contains("button", "Fechar")
+                        .click()
 
-                deleteTestVideoIfExists()
-            }
-        })
+                    cy.wait(300)
+
+                    deleteIfExists()
+                }
+            })
+        }
+
+        deleteIfExists()
+    },
+
+    goToAdminPage() {
+        cy.contains('a', 'Voltar para o menu').click()
     }
-
-    deleteTestVideoIfExists()
-},
-goToAdminPage(){
-    cy.contains('a', 'Voltar para o menu').click()
-}
-
-    
 }

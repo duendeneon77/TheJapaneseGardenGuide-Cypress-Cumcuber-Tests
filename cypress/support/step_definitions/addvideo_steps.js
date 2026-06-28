@@ -1,5 +1,4 @@
-import { When, Then,Before,After
-} from "@badeball/cypress-cucumber-preprocessor"
+import { When, Then, Before } from "@badeball/cypress-cucumber-preprocessor"
 
 /// <reference types="cypress" />
 
@@ -10,45 +9,56 @@ import addvideo_page from "../pages/addvideo_page"
 import videos_page from "../pages/videos_page"
 
 
-Before({tags:"@beforeAddVideo"},()=>{
+Before({ tags: "@beforeAddVideo" }, () => {
     home_page.accessLogin()
-    login_page.fillFieldsAndClickToLogin("admin@email.com","123456")
+    login_page.fillFieldsAndClickToLogin("admin@email.com", "123456")
     adminPage_page.goToEditOrDeleteVideo()
-    addvideo_page.cleaningAddVideoTest()
+    addvideo_page.cleanUpTestVideo()
     addvideo_page.goToAdminPage()
     adminPage_page.goToAddVideo()
-}),
-When("I fill the necessary video fields",()=>{
-    addvideo_page.fillVideoFields()
-}),
-When("I click to post the video",()=>{
-    addvideo_page.clickToPostVideo()
 })
 
-Then("I see the video creation message {string}",(message)=>{
-    addvideo_page.dealingWithAddVideoMessage(message)
-}),
-Then('I see the video in the list',()=>{
+
+When("I fill the necessary video fields", () => {
+    addvideo_page.fillVideoFields()
+})
+
+When("I click to post the video", () => {
+    addvideo_page.clickPostVideo()
+})
+
+Then("I see the video creation message {string}", (message) => {
+    addvideo_page.handleVideoCreationMessage(message)
+})
+
+
+Then("I see the video in the video list", () => {
     addvideo_page.goToVideosPage()
-    videos_page.theVideoExistsInTheVideoPage('Video Test')
-}),
-Then("I can check the video details",()=>{
+    videos_page.theVideoExistsInTheVideoPage("Video Test")
+})
+
+Then("I don't see the video in the video list", () => {
+    addvideo_page.goToVideosPage()
+    videos_page.theVideoDoesNotExistInTheVideoPage("Video Test")
+})
+
+Then("I can view the video details", () => {
     videos_page.theVideoExistsInTheVideoPage("Video Test")
     videos_page.checkVideoDetails("video description test, video description text")
-}),
-When("I try to add a new video with missing field {string}",(field)=>{
-    addvideo_page.clearVideoFieldInput(field)
-    addvideo_page.clickToPostVideo()
-}),
-Then("I dont see the video in the list",()=>{
-    addvideo_page.goToVideosPage()
-    videos_page.theVideoDoesNotExistInTheVideoPage('Video Test')
-}),
-When("I try to add a new video with a invalid video link", ()=>{
+})
+
+When("I try to add a video with missing field {string}", (field) => {
+    addvideo_page.clearVideoField(field)
+    addvideo_page.clickPostVideo()
+})
+
+When("I try to add a video with an invalid video link", () => {
     addvideo_page.fillVideoFields()
-    addvideo_page.fillingInputWithUnvalidCode()
-    addvideo_page.clickToPostVideo()
-}),
-When("I click to cancel the video creation",()=>{
-    addvideo_page.clickToCancel()
+    addvideo_page.fillVideoWithInvalidCode()
+    addvideo_page.clickPostVideo()
+})
+
+
+When("I click to cancel the video creation", () => {
+    addvideo_page.clickCancelVideoCreation()
 })

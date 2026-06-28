@@ -1,9 +1,9 @@
 @editProjectPage
 Feature: Edit Project Page
     As an administrator
-    I want to change the text of Project Page
+    I want to change the text of the Project Page
 
-    Scenario: Successfully editing Project Page Text
+    Scenario: Successfully edit the Project Page text
         When I edit the Project Page
         Then I click to save the project page edition
         And I see the the edited project page
@@ -12,5 +12,5 @@ Feature: Edit Project Page
     Scenario: editing Project Page Text but canceling it
         When I edit the Project Page
         Then I click to cancel the project page edition
-        And I dont see the the edited project page
+        And I dont see the edited project page
 

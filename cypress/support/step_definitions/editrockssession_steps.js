@@ -30,7 +30,7 @@ Then ("I click to cancel the rocks session edition",()=>{
     
     editrockssession_page.cancelEdition()
 })
-Then('I dont see the the edited rocks session',()=>{
+Then('I dont see the edited rocks session',()=>{
     adminPage_page.goToRocksSessionPage()
     rockssession_page.theRocksSessionWasNotEdited()
 

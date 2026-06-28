@@ -29,7 +29,7 @@ Then('I see the the edited water session',()=>{
 Then ("I click to cancel the water session edition",()=>{
     editwatersession_page.cancelEdition()
 })
-Then('I dont see the the edited water session',()=>{
+Then('I dont see the edited water session',()=>{
     adminPage_page.goToWaterSessionPage()
     watersession_page.theWaterSessionWasNotEdited()
 
